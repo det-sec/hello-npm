@@ -1,0 +1,23 @@
+{
+  "name": "@xltan/hello-npm",
+  "version": "1.0.6",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "yarn": "^1.22.18"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {
+    "@xltan/hello-npm-darwin": "1.0.3",
+    "@xltan/hello-npm-win32": "1.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "git://github.com/xltan/hello-npm.git"
+}
