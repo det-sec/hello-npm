@@ -15,7 +15,7 @@ jobs:
             target: "x86_64-apple-darwin"
             build: |
               npx node-gyp rebuild
-              strip -x *.node
+              strip -x */*.node
           - host: windows-latest
             build: npx node-gyp rebuild
             target: "i686-pc-windows-msvc"
