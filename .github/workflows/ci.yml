@@ -31,7 +31,7 @@ jobs:
         with:
           node-version: 16
           check-latest: true
-          cache: yarn
+          cache: npm
 
       - name: Cache NPM dependencies
         uses: actions/cache@v3
@@ -50,7 +50,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: bindings-${{ matrix.settings.target }}
-          path: "*.node"
+          path: "*.js"
           if-no-files-found: error
 
   test-bindings:
@@ -78,10 +78,10 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
-          cache: yarn
+          cache: npm
 
       - name: Install dependencies
-        run: yarn install --immutable --mode=skip-build
+        run: npm install --immutable --mode=skip-build
 
       - name: Download artifacts
         uses: actions/download-artifact@v3
@@ -89,13 +89,17 @@ jobs:
           name: bindings-${{ matrix.settings.target }}
           path: artifacts
 
+      - name: List artifacts
+        run: ls -R artifacts
+        shell: bash
+
       - name: Move artifacts
-        run: yarn artifacts
+        run: npm run artifacts
         shell: bash
 
       - name: Test bindings
         run: |
-          yarn test
+          npm test
 
   publish:
     name: Publish
@@ -110,16 +114,16 @@ jobs:
         with:
           node-version: 16
           check-latest: true
-          cache: yarn
+          cache: npm
 
       - name: Cache NPM dependencies
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: npm-cache-ubuntu-latest-publish-${{ hashFiles('yarn.lock') }}
+          key: npm-cache-ubuntu-latest-publish-${{ hashFiles('package-lock.json') }}
 
       - name: "Install dependencies"
-        run: yarn install --immutable --mode=skip-build
+        run: npm install --immutable --mode=skip-build
 
       - name: Download all artifacts
         uses: actions/download-artifact@v3
@@ -131,11 +135,10 @@ jobs:
         shell: bash
 
       - name: Move artifacts
-        run: yarn artifacts
+        run: npm artifacts
 
       - name: Publish
-        if: "startsWith(github.event.head_commit.message, 'chore(release): publish')"
         run: |
-          yarn publish from-package --no-verify-access --yes
+          npm publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
