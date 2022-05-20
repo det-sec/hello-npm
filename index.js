@@ -15,7 +15,7 @@ switch (platform) {
       if (localFileExisted) {
         nativeBinding = require(`./${platform}-${arch}/native.node`);
       } else {
-        nativeBinding = require("@node-rs/native-win32-ia32");
+        nativeBinding = require("@xltan/hello-npm-win32-ia32");
       }
     } catch (e) {
       loadError = e;
@@ -31,7 +31,7 @@ switch (platform) {
           if (localFileExisted) {
             nativeBinding = require(`./${platform}-${arch}/native.node`);
           } else {
-            nativeBinding = require("@node-rs/native-darwin-x64");
+            nativeBinding = require("@xltan/hello-npm-darwin-x64");
           }
         } catch (e) {
           loadError = e;
