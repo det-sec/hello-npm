@@ -7,23 +7,18 @@ let nativeBinding = null;
 
 switch (platform) {
   case "win32":
-    switch (arch) {
-      case "ia32":
-        localFileExisted = existsSync(
-          join(__dirname, `${platform}-${arch}`, "native.node")
-        );
-        try {
-          if (localFileExisted) {
-            nativeBinding = require(`./${platform}-${arch}/native.node`);
-          } else {
-            nativeBinding = require("@node-rs/native-win32-ia32");
-          }
-        } catch (e) {
-          loadError = e;
-        }
-        break;
-      default:
-        throw new Error(`Unsupported architecture on Windows: ${arch}`);
+    arch = "ia32";
+    localFileExisted = existsSync(
+      join(__dirname, `${platform}-${arch}`, "native.node")
+    );
+    try {
+      if (localFileExisted) {
+        nativeBinding = require(`./${platform}-${arch}/native.node`);
+      } else {
+        nativeBinding = require("@node-rs/native-win32-ia32");
+      }
+    } catch (e) {
+      loadError = e;
     }
     break;
   case "darwin":

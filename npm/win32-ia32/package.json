@@ -15,5 +15,5 @@
   },
   "repository": "git://github.com/xltan/hello-npm.git",
   "os": "win32",
-  "arch": "ia32"
+  "arch": "any"
 }
