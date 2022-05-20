@@ -65,8 +65,10 @@ jobs:
         settings:
           - host: macos-latest
             target: "x86_64-apple-darwin"
+            name: "darwin-x64"
           - host: windows-latest
             target: "i686-pc-windows-msvc"
+            name: "win32-ia32"
         node: ["16"]
     runs-on: ${{ matrix.settings.host }}
 
@@ -86,7 +88,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: bindings-${{ matrix.settings.target }}
+          name: ${{ matrix.settings.name }}
           path: .
 
       - name: Test bindings
