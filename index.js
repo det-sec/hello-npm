@@ -10,13 +10,13 @@ switch (platform) {
     switch (arch) {
       case "ia32":
         localFileExisted = existsSync(
-          join(__dirname, "native.win32-ia32-msvc.node")
+          join(__dirname, `${platform}-${arch}`, "native.node")
         );
         try {
           if (localFileExisted) {
-            nativeBinding = require("./native.win32-ia32-msvc.node");
+            nativeBinding = require(`./${platform}-${arch}/native.node`);
           } else {
-            nativeBinding = require("@node-rs/native-win32-ia32-msvc");
+            nativeBinding = require("@node-rs/native-win32-ia32");
           }
         } catch (e) {
           loadError = e;
@@ -29,10 +29,12 @@ switch (platform) {
   case "darwin":
     switch (arch) {
       case "x64":
-        localFileExisted = existsSync(join(__dirname, "native.node"));
+        localFileExisted = existsSync(
+          join(__dirname, `${platform}-${arch}`, "native.node")
+        );
         try {
           if (localFileExisted) {
-            nativeBinding = require("./native.node");
+            nativeBinding = require(`./${platform}-${arch}/native.node`);
           } else {
             nativeBinding = require("@node-rs/native-darwin-x64");
           }

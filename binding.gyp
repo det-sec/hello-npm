@@ -58,7 +58,7 @@
         "copies": [
             {
                 "files": [ "<(PRODUCT_DIR)/native.node" ],
-                "destination": "."
+                "destination": "<!(node -p \"require('process').platform\")-<(target_arch)"
             }
         ]
     }]
