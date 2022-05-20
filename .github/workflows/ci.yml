@@ -16,9 +16,9 @@ jobs:
             build: |
               npx node-gyp rebuild
               strip -x npm/*/*.node
-          - host: windows-latest
-            build: npx node-gyp rebuild
-            target: "i686-pc-windows-msvc"
+          # - host: windows-latest
+          #   build: npx node-gyp rebuild
+          #   target: "i686-pc-windows-msvc"
 
     name: stable - ${{ matrix.settings.target }} - node@16
     runs-on: ${{ matrix.settings.host }}
@@ -32,6 +32,11 @@ jobs:
           node-version: 16
           check-latest: true
           cache: npm
+
+      - name: Setup node x86
+        if: matrix.settings.target == 'i686-pc-windows-msvc'
+        run: npm config set supportedArchitectures.cpu "ia32"
+        shell: bash
 
       - name: Cache NPM dependencies
         uses: actions/cache@v3
@@ -63,8 +68,8 @@ jobs:
         settings:
           - host: macos-latest
             target: "x86_64-apple-darwin"
-          - host: windows-latest
-            target: "x86_64-pc-windows-msvc"
+          # - host: windows-latest
+          #   target: "i686-pc-windows-msvc"
         node: ["16"]
     runs-on: ${{ matrix.settings.host }}
 
