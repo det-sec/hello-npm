@@ -1,6 +1,6 @@
 {
   "name": "@xltan/hello-npm",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "main": "index.js",
   "devDependencies": {
@@ -8,12 +8,15 @@
     "node-gyp": "8.4.0"
   },
   "optionalDependencies": {
-    "@xltan/hello-npm-darwin": "1.0.6",
-    "@xltan/hello-npm-win32": "1.0.6"
+    "@xltan/hello-npm-darwin": "1.0.7",
+    "@xltan/hello-npm-win32": "1.0.7"
   },
   "scripts": {
     "test": "node index.js"
   },
+  "files": [
+    "index.js"
+  ],
   "author": "",
   "license": "ISC",
   "publishConfig": {
