@@ -14,10 +14,10 @@ jobs:
           - host: macos-latest
             target: "x86_64-apple-darwin"
             build: |
-              npx node-gyp build
+              npx node-gyp rebuild
               strip -x *.node
           - host: windows-latest
-            build: npx node-gyp build
+            build: npx node-gyp rebuild
             target: "i686-pc-windows-msvc"
 
     name: stable - ${{ matrix.settings.target }} - node@16
