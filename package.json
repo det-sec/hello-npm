@@ -1,6 +1,6 @@
 {
   "name": "@xltan/hello-npm",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "main": "index.js",
   "devDependencies": {
@@ -8,8 +8,8 @@
     "node-gyp": "8.4.0"
   },
   "optionalDependencies": {
-    "@xltan/hello-npm-darwin-x64": "1.0.8",
-    "@xltan/hello-npm-win32-ia32": "1.0.8"
+    "@xltan/hello-npm-darwin-x64": "1.0.9",
+    "@xltan/hello-npm-win32-ia32": "1.0.9"
   },
   "scripts": {
     "test": "node index.js"

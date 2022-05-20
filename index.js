@@ -1,7 +1,7 @@
 const { existsSync } = require("fs");
 const { join } = require("path");
 
-const { platform, arch } = process;
+let { platform, arch } = process;
 
 let nativeBinding = null;
 
