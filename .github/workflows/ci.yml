@@ -85,15 +85,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: bindings-${{ matrix.settings.target }}
-          path: artifacts
-
-      - name: List artifacts
-        run: ls -R artifacts
-        shell: bash
-
-      - name: Move artifacts
-        run: npm run artifacts
-        shell: bash
+          path: .
 
       - name: Test bindings
         run: |
@@ -128,15 +120,10 @@ jobs:
         with:
           path: artifacts
 
-      - name: List artifacts
-        run: ls -R artifacts
-        shell: bash
-
-      - name: Move artifacts
-        run: npm artifacts
-
       - name: Publish
         run: |
+          npm publish npm/win32-ia32
+          npm publish npm/darwin-x64
           npm publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

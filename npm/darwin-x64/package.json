@@ -1,8 +1,8 @@
 {
-  "name": "@xltan/hello-npm-darwin",
+  "name": "@xltan/hello-npm-darwin-x64",
   "version": "1.0.6",
   "description": "",
-  "main": "index.js",
+  "main": "native.node",
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
