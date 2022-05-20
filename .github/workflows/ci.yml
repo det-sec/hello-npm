@@ -15,10 +15,12 @@ jobs:
             target: "x86_64-apple-darwin"
             build: |
               npx node-gyp rebuild
-              strip -x npm/*/*.node
+              strip -x *.node
+            name: "darwin-x64"
           - host: windows-latest
             build: npx node-gyp rebuild --arch=ia32
             target: "i686-pc-windows-msvc"
+            name: "win32-ia32"
 
     name: stable - ${{ matrix.settings.target }} - node@16
     runs-on: ${{ matrix.settings.host }}
@@ -49,8 +51,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: bindings-${{ matrix.settings.target }}
-          path: "npm/*/*.node"
+          name: ${{ matrix.settings.name }}
+          path: "*.node"
           if-no-files-found: error
 
   test-bindings:
@@ -116,7 +118,7 @@ jobs:
       - name: Download all artifacts
         uses: actions/download-artifact@v3
         with:
-          path: .
+          path: npm
 
       - name: Publish
         run: |

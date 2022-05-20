@@ -8,12 +8,10 @@ let nativeBinding = null;
 switch (platform) {
   case "win32":
     arch = "ia32";
-    localFileExisted = existsSync(
-      join(__dirname, `${platform}-${arch}`, "native.node")
-    );
+    localFileExisted = existsSync(join(__dirname, "native.node"));
     try {
       if (localFileExisted) {
-        nativeBinding = require(`./${platform}-${arch}/native.node`);
+        nativeBinding = require(`./native.node`);
       } else {
         nativeBinding = require("@xltan/hello-npm-win32-ia32");
       }
@@ -24,12 +22,10 @@ switch (platform) {
   case "darwin":
     switch (arch) {
       case "x64":
-        localFileExisted = existsSync(
-          join(__dirname, `${platform}-${arch}`, "native.node")
-        );
+        localFileExisted = existsSync(join(__dirname, "native.node"));
         try {
           if (localFileExisted) {
-            nativeBinding = require(`./${platform}-${arch}/native.node`);
+            nativeBinding = require(`./native.node`);
           } else {
             nativeBinding = require("@xltan/hello-npm-darwin-x64");
           }
